@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Models\Animal;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 // Mostrar formulario de login
@@ -45,3 +46,12 @@ Route::get('/employees/partial', function () {
     return view('partials.empleados', compact('trabajadores'));
 });
 
+//RUTA PARA ERRORES EN CONEXION CON LA DB
+Route::get('/check-db', function () {
+    try {
+        DB::connection()->getPdo();
+        return response()->json(['status' => 'ok']);
+    } catch (\Throwable $e) {
+        return response()->json(['status' => 'error', 'message' => $e->getMessage()], 500);
+    }
+});
