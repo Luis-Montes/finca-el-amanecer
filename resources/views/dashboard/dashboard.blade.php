@@ -7,39 +7,47 @@
     <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet" />
     <link href="{{asset('css/font-awesome.css')}}" rel="stylesheet" />
     <link href="{{asset('css/dash.css')}}" rel="stylesheet" />
+    <!-- Si usas Bootstrap -->
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    />
+
 </head>
 <body>
+<!-- Navbar estilo Bootstrap 3 pero con Bootstrap 5 -->
+<nav class="navbar navbar-expand-lg custom-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="#">Mi Dashboard</a>
 
-    <div class="navbar navbar-inverse set-radius-zero">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">
-                    <img src="assets/img/logo.png" />
-                </a>
-            </div>
-        </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu" 
+            aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar-menu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="showModule('dashboard');">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="showModule('animals');">Animales</a></li>
+        <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="showModule('plants');">Árboles</a></li>
+        <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="showModule('tools');">Herramientas</a></li>
+        <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="showModule('reports');">Reportes</a></li>
+        <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="showModule('employees');">Trabajadores</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ route('logout') }}"><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
+      </ul>
     </div>
+  </div>
+</nav>
 
-    <section class="menu-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="navbar-collapse collapse">
-                        <ul id="menu-top" class="nav navbar-nav navbar-right">
-                            <li><a href="javascript:void(0)" onclick="showModule('dashboard');">Dashboard</a></li>
-                            <li><a href="javascript:void(0)" onclick="showModule('animals');">Animales</a></li>
-                            <li><a href="javascript:void(0)" onclick="showModule('plants');">Árboles</a></li>
-                            <li><a href="javascript:void(0)" onclick="showModule('tools');">Herramientas</a></li>
-                            <li><a href="javascript:void(0)" onclick="showModule('reports');">Reportes</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<style>
+/* 🔸 Estilo personalizado para imitar navbar-inverse */
+
+</style>
+
+
+
+
+
 
     <div class="content-wrapper">
         <div class="container">
@@ -138,58 +146,8 @@
                 </div>
             </div>
 
-    <div class="module" id="animals" style="display:none;">
-        <h3>Animales</h3>
 
-        <div class="row g-2 mb-3">
-            <div class="col-md-4">
-                <select id="filter-especie" class="form-select">
-                    <option value="">Todas las especies</option>
-                    @foreach($especies as $especie)
-                        <option value="{{ $especie }}">{{ $especie }}</option>
-                    @endforeach
-
-                </select>
-            </div>
-            <div class="col-md-4">
-                <select id="filter-estado" class="form-select">
-                    <option value="">Todos los estados</option>
-                    @foreach($estados as $est)
-                        <option value="{{ $est }}">{{ $est }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
-
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered" id="table-animales">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Matrícula</th>
-                        <th>Nombre</th>
-                        <th>Especie</th>
-                        <th>Raza</th>
-                        <th>Fecha de Nacimiento</th>
-                        <th>Estado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($animales as $index => $animal)
-                    <tr data-especie="{{ $animal->especie }}" data-estado="{{ $animal->estado }}">
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $animal->matricula }}</td>
-                        <td>{{ $animal->nombre }}</td>
-                        <td>{{ $animal->especie }}</td>
-                        <td>{{ $animal->raza }}</td>
-                        <td>{{ $animal->fecha_nacimiento }}</td>
-                        <td>{{ $animal->estado }}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
+            @include('partials.animals')
 
 
 
@@ -244,6 +202,8 @@
                 </div>
             </div>
 
+            @include('partials.employees')
+
         </div>
     </div>
 
@@ -253,10 +213,22 @@
         </div>
     </section>
 
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery necesario para Bootstrap 3 -->
+    {{-- <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> --}}
 
-    </script>
+    <!-- Bootstrap JS -->
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+    <!-- Tus scripts (dashboard primero si lo necesitas) -->
+    <script src="{{ asset('js/dashboard.js') }}"></script>
+    <script src="{{ asset('js/modals_animal.js') }}"></script>
+    <script src="{{ asset('js/modals_empleado.js') }}"></script>
+    
+
+    @include('modals.modalanimal')
+    @include('modals.modalempleados')
+
+
 </body>
 </html>
