@@ -1,10 +1,10 @@
-# 🌿 Finca El Amanecer — Sistema de Gestión
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-Este proyecto es una aplicación desarrollada en **Laravel 12** que permite gestionar y administrar las operaciones de la finca *El Amanecer* de manera eficiente.  
+### Instrucciones para ejecutar la aplicacion
+
+Este proyecto es una aplicación desarrollada en **Laravel 12** que permite gestionar y administrar las operaciones de la finca *El Amanecer* de manera eficiente.
 
 ---
-
-## 📦 Requisitos previos
 
 Antes de comenzar, asegúrate de tener instalado:
 
@@ -16,23 +16,16 @@ Antes de comenzar, asegúrate de tener instalado:
 
 ---
 
-## 🚀 Instalación y configuración
-
-Sigue los pasos a continuación para levantar el proyecto localmente:
-
-### 1. Clonar el repositorio
-```bash
-git clone https://github.com/usuario/nombre-del-repo.git
-cd nombre-del-repo
-
-
+# Instalarar dependencias:
 composer install
 npm install
 
+# Configurar archivo .env:
 cp .env.example .env
 
+## Crea una base de datos y ejecuta las migraciones:
 finca_el_amanecer
-
 php artisan migrate
 
-
+# Para crear un usuario ejecuta la siguiente linea:
+php artisan make:admin
