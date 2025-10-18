@@ -15,7 +15,8 @@ return new class extends Migration
             $table->string('username')->nullable();
             $table->string('telefono')->nullable();
             $table->string('direccion')->nullable();
-            $table->string('role')->default('trabajador', 'admin');
+            $table->string('role')->default('trabajador', 'administrador');
+            $table->string('apellidos')->nullable();
         });
     }
 

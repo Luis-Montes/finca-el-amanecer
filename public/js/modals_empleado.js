@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('modalAgregarEmpleado');
     const modalInstance = modal ? bootstrap.Modal.getOrCreateInstance(modal) : null;
 
-    // Generar matrícula automáticamente
     if (modal) {
         modal.addEventListener('show.bs.modal', () => {
             const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -35,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const data = await response.json();
                 if (data.success && data.user) {
-                    // Agregar fila al tbody
                     const tbody = document.querySelector('#table-empleados tbody');
                     const row = document.createElement('tr');
                     row.innerHTML = `
@@ -53,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             } catch (err) {
                 console.error(err);
-                alert('❌ Error al guardar el trabajador.');
+                alert('Error al guardar');
             }
         });
     }

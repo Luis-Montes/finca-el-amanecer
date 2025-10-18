@@ -10,7 +10,6 @@ class CheckDatabaseConnection
 {
     public function handle(Request $request, Closure $next)
     {
-        // No comprobar en la ruta del propio check
         if ($request->is('check-db')) {
             return $next($request);
         }
@@ -18,7 +17,6 @@ class CheckDatabaseConnection
         try {
             DB::connection()->getPdo();
         } catch (\Throwable $e) {
-            // Si la conexión falla, mostrar la vista personalizada
             return response()->view('errors.conexion', [], 500);
         }
 

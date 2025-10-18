@@ -1,5 +1,3 @@
-//ANIMALES
-
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('form-animal');
     const modal = document.getElementById('modalAgregarAnimal');
@@ -30,14 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             } catch (err) {
                 console.error(err);
-                alert('❌ Error al guardar el animal.');
+                alert('Error al guardar');
             }
         });
     }
 
-    // EMPLEADOS
-
-    // Generar matrícula automáticamente al abrir el modal
     const modalEl = document.getElementById('modalAgregarAnimal');
     if (modalEl) {
         modalEl.addEventListener('show.bs.modal', () => {
@@ -52,9 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Recargar solo el tbody de la tabla de animales
 async function reloadAnimals() {
-    const res = await fetch('/animals/partial'); // ruta parcial que devuelve solo el tbody
+    const res = await fetch('/animals/partial');
     if (res.ok) {
         const html = await res.text();
         const tempDiv = document.createElement('div');

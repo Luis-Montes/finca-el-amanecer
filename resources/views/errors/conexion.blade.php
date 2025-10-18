@@ -54,17 +54,13 @@
     </div>
 
     <script>
-        // Reintenta cada 5 segundos si ya hay conexión
         async function checkConnection() {
             try {
-                // Intentamos un fetch al endpoint del login o home
                 const res = await fetch("{{ route('login') }}", { method: 'GET' });
                 if (res.ok) {
-                    // Si la conexión volvió, redirigimos
                     window.location.href = "{{ route('login') }}";
                 }
             } catch (e) {
-                // Si sigue sin conexión, esperamos
             } finally {
                 setTimeout(checkConnection, 5000);
             }

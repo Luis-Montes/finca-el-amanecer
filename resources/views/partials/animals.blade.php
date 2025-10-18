@@ -2,7 +2,7 @@
     <h3>Animales</h3>
     @if(!$dbOnline)
         <div class="alert alert-danger text-center">
-            🚨 No hay conexión con la base de datos. Intenta más tarde.
+            No hay conexión.
         </div>
     @endif
 
@@ -63,7 +63,11 @@
                 <button class="btn btn-sm btn-primary" onclick="openRegistroModal({{ $animal->id }})">Registro</button>
             </td>
             <td>
-                <button class="btn btn-sm btn-info" onclick="openHistorialModal({{ $animal->id }})">Historial</button>
+                <button 
+                    class="btn btn-sm btn-info"
+                    onclick="openModalHistorial('{{ $animal->id }}', '{{ $animal->matricula }}', '{{ $animal->nombre }}', '{{ $animal->estado }}')">
+                    Historial
+                </button>
             </td>
         </tr>
         @endforeach

@@ -24,7 +24,7 @@ class UserController extends Controller
             'apellidos' => $request->apellidos,
             'telefono' => $request->telefono,
             'role' => $request->rol,
-            'password' => $request->password, // se encripta automáticamente en el modelo
+            'password' => $request->password,
         ]);
 
         return response()->json([

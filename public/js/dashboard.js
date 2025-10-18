@@ -1,4 +1,3 @@
-// Función para mostrar un módulo y ocultar los demás
 function showModule(id) {
     document.querySelectorAll('.module').forEach(function(module) {
         module.style.display = 'none';
@@ -6,7 +5,6 @@ function showModule(id) {
     document.getElementById(id).style.display = 'block';
 }
 
-// Mostrar el Dashboard por defecto
 showModule('dashboard');
 
 

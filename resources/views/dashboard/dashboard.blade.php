@@ -7,7 +7,6 @@
     <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet" />
     <link href="{{asset('css/font-awesome.css')}}" rel="stylesheet" />
     <link href="{{asset('css/dash.css')}}" rel="stylesheet" />
-    <!-- Si usas Bootstrap -->
     <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     rel="stylesheet"
@@ -15,38 +14,93 @@
 
 </head>
 <body>
-<!-- Navbar estilo Bootstrap 3 pero con Bootstrap 5 -->
-<nav class="navbar navbar-expand-lg custom-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="#">Mi Dashboard</a>
+    <nav class="navbar navbar-expand-lg custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">Finca el amanecer</a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu" 
-            aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbar-menu"
+                aria-controls="navbar-menu"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    <div class="collapse navbar-collapse" id="navbar-menu">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="showModule('dashboard');">Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="showModule('animals');">Animales</a></li>
-        <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="showModule('plants');">Árboles</a></li>
-        <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="showModule('tools');">Herramientas</a></li>
-        <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="showModule('reports');">Reportes</a></li>
-        <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="showModule('employees');">Trabajadores</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ route('logout') }}"><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<style>
-/* 🔸 Estilo personalizado para imitar navbar-inverse */
-
-</style>
-
-
-
-
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="javascript:void(0)"
+                            onclick="showModule('dashboard');"
+                            >Dashboard</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="javascript:void(0)"
+                            onclick="showModule('animals');"
+                            >Animales</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="javascript:void(0)"
+                            onclick="showModule('plants');"
+                            >Árboles</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="javascript:void(0)"
+                            onclick="showModule('tools');"
+                            >Herramientas</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="javascript:void(0)"
+                            onclick="showModule('reports');"
+                            >Reportes</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="javascript:void(0)"
+                            onclick="showModule('employees');"
+                            >Trabajadores</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            href="#"
+                            class="nav-link"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                        >
+                            Cerrar sesión
+                        </a>
+                        <form
+                            id="logout-form"
+                            action="{{ route('logout') }}"
+                            method="POST"
+                            style="display: none"
+                        >
+                            @csrf
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
 
     <div class="content-wrapper">
@@ -59,7 +113,6 @@
             </div>
 
             <div id="dashboard" class="module">
-                <!-- Iconos -->
                 <div class="row">
                     <div class="col-md-3 col-sm-6">
                         <div class="alert alert-info text-center">
@@ -150,7 +203,6 @@
             @include('partials.animals')
 
 
-
             <div id="plants" class="module" style="display:none;">
                 <div class="panel panel-success">
                     <div class="panel-heading">Árboles</div>
@@ -185,22 +237,7 @@
                 </div>
             </div>
 
-            <div id="reports" class="module" style="display:none;">
-                <div class="panel panel-success">
-                    <div class="panel-heading">Reportes</div>
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered table-hover">
-                                <thead><tr><th>#</th><th>Reporte</th><th>Fecha</th></tr></thead>
-                                <tbody>
-                                    <tr><td>1</td><td>Reporte 1</td><td>15/10/2025</td></tr>
-                                    <tr><td>2</td><td>Reporte 2</td><td>16/10/2025</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @include('partials.reports')
 
             @include('partials.employees')
 
@@ -214,20 +251,17 @@
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- jQuery necesario para Bootstrap 3 -->
-    {{-- <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> --}}
-
-    <!-- Bootstrap JS -->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-
-    <!-- Tus scripts (dashboard primero si lo necesitas) -->
     <script src="{{ asset('js/dashboard.js') }}"></script>
     <script src="{{ asset('js/modals_animal.js') }}"></script>
     <script src="{{ asset('js/modals_empleado.js') }}"></script>
+    <script src="{{ asset('js/modals_registro.js') }}"></script>
+    <script src="{{ asset('js/modals_historial.js') }}"></script>
     
-
     @include('modals.modalanimal')
     @include('modals.modalempleados')
+    @include('modals.modalregistro');
+    @include('modals.modalshistorial');
 
 
 </body>

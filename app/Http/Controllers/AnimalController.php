@@ -11,10 +11,10 @@ class AnimalController extends Controller
     {
         $validated = $request->validate([
             'matricula' => 'required|unique:animales,matricula',
-            'nombre' => 'required|string|max:255',
+            'nombre' => 'nullable|string|max:255',
             'especie' => 'required|string|max:255',
             'raza' => 'required|string|max:255',
-            'fecha_nacimiento' => 'required|date',
+            'fecha_nacimiento' => 'nullable|date',
             'sexo' => 'required|string',
             'estado' => 'required|string',
             'observaciones' => 'nullable|string'
@@ -22,12 +22,10 @@ class AnimalController extends Controller
 
         $animal = Animal::create($validated);
 
-        // 👉 Si la petición viene desde fetch(), respondemos con JSON
         if ($request->ajax()) {
             return response()->json(['success' => true, 'animal' => $animal]);
         }
 
-        // 🚪 Si es una petición normal, redirige (comportamiento clásico)
         return redirect()->back()->with('success', 'Animal agregado correctamente.');
     }
 }

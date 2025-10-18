@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('arboles', function (Blueprint $table) {
             $table->id();
             $table->string('matricula')->unique();
+            $table->string('nombre')->nullable();
             $table->enum('tipo', ['Árbol Frutal', 'Árbol Ornamental', 'Parcela de pantación', 'Cultivo', 'Hortaliza']);
             $table->string('especie');
-            $table->date('fecha_plantacion');
+            $table->date('fecha_plantacion')->nullable();
             $table->enum('estado', ['Saludable', 'Enfermo', 'Talado', 'Cosechado']);
             $table->string('ubicacion');
-            $table->string('observaciones');
+            $table->string('observaciones')->nullable();
             $table->timestamps();
         });
     }

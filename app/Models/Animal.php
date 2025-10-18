@@ -20,4 +20,10 @@ class Animal extends Model
         'estado',
         'observaciones'
     ];
+
+    public function registros()
+    {
+        return $this->hasMany(Registro::class);
+    }
+
 }

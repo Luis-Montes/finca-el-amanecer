@@ -2,25 +2,20 @@
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content shadow-lg" style="border-radius: 1rem; border: none; transition: transform 0.3s ease, opacity 0.3s ease;">
 
-            <!-- Header elegante -->
             <div class="modal-header" style="background-color: #2D995B; border-bottom: none; border-top-left-radius: 1rem; border-top-right-radius: 1rem;">
                 <h5 class="modal-title text-white fw-bold" id="modalAgregarEmpleadoLabel" style="letter-spacing: 0.5px;">
                     Agregar Nuevo Trabajador
                 </h5>
             </div>
 
-            <!-- Formulario con padding y transición -->
             <form id="form-empleado" action="{{ route('empleado.store') }}" method="POST">
                 @csrf
                 <div class="modal-body p-4">
                     <div class="row g-3">
 
-                        <!-- Inputs -->
                         <div class="col-md-6">
                             <label for="matricula" class="form-label fw-semibold">Matrícula</label>
                             <input type="text" class="form-control" id="matricula_empleado" name="matricula" readonly>
-
-
                         </div>
 
                         <div class="col-md-6">
@@ -55,7 +50,6 @@
                     </div>
                 </div>
 
-                <!-- Footer minimalista -->
                 <div class="modal-footer border-top-0 justify-content-between p-3">
                     <button type="button" class="btn btn-light text-secondary rounded-3" data-bs-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-success rounded-3 px-4">Guardar</button>
@@ -66,7 +60,6 @@
 </div>
 
 <style>
-/* Inputs con hover/focus suave */
 .input-hover {
     transition: all 0.25s ease;
 }
@@ -75,7 +68,6 @@
     border-color: #2D995B;
 }
 
-/* Animación del modal */
 .modal.fade .modal-dialog {
     transform: translateY(-20px);
     transition: transform 0.3s ease-out, opacity 0.3s ease;
@@ -84,29 +76,7 @@
     transform: translateY(0);
 }
 
-/* Ajustes de sombra y bordes */
 .modal-content.shadow-lg {
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
 }
 </style>
-
-
-{{-- <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const modal = document.getElementById('modalAgregarEmpleado');
-    const input = document.getElementById('matricula_empleado');
-
-    if (!modal) return console.error('No se encontró el modal');
-    if (!input) return console.error('No se encontró el input de matrícula');
-
-    modal.addEventListener('show.bs.modal', function() {
-        const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        let matricula = '';
-        for (let i = 0; i < 8; i++) {
-            matricula += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
-        }
-        input.value = matricula;
-        console.log('Matrícula generada:', matricula);
-    });
-});
-</script> --}}
