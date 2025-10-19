@@ -63,11 +63,23 @@
                 <button class="btn btn-sm btn-primary" onclick="openRegistroModal({{ $animal->id }})">Registro</button>
             </td>
             <td>
-                <button 
-                    class="btn btn-sm btn-info"
+                <button class="btn btn-sm btn-info"
                     onclick="openModalHistorial('{{ $animal->id }}', '{{ $animal->matricula }}', '{{ $animal->nombre }}', '{{ $animal->estado }}')">
                     Historial
                 </button>
+            </td>
+            <td>
+                <!-- Botón Editar -->
+                <button class="btn btn-sm btn-warning" onclick="openAnimalModal({{ $animal->id }})">>
+                    Editar
+                </button>
+
+                <!-- Botón Eliminar -->
+                <form action="{{ route('animals.destroy', $animal->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('¿Seguro que deseas eliminar este animal?')">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-sm btn-danger" type="submit">Eliminar</button>
+                </form>
             </td>
         </tr>
         @endforeach

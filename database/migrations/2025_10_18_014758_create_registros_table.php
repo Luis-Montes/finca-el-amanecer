@@ -13,14 +13,18 @@ return new class extends Migration
     {
         Schema::create('registros', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('animal_id')->constrained('animales')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('actividad');
+            $table->foreignId('animal_id')->nullable()->constrained('animales')->nullOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->string('animal_nombre');
+            $table->string('animal_matricula');
+            $table->string('responsable_nombre');
+            $table->string('nombre');
             $table->enum('tipo', ['Vacuna', 'Medicamento', 'Revision Veterinaria', 'Alimentacion Especial', 'Repodruccion', 'Observacion']);
             $table->enum('estado', ['Programada', 'Completada'])->default('Programada');
             $table->date('fecha')->nullable();
             $table->time('hora')->nullable();
             $table->text('descripcion')->nullable();
+            $table->text('observaciones')->default('Sin observaciones');
             $table->timestamps();
         });
     }

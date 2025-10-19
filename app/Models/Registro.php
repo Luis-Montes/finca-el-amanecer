@@ -9,13 +9,18 @@ class Registro extends Model
     protected $fillable = [
         'animal_id',
         'user_id', 
-        'actividad', 
+        'animal_nombre',       // <-- agregar
+        'animal_matricula',    // <-- agregar
+        'responsable_nombre',  // <-- agregar
+        'nombre', 
         'estado', 
         'tipo', 
         'fecha', 
         'hora', 
-        'descripcion'
+        'descripcion',
+        'observaciones'
     ];
+
 
     public function animal()
     {

@@ -29,17 +29,17 @@
 
                         <div class="col-md-6">
                             <label for="nombre" class="form-label fw-semibold">Nombre de la Acción *</label>
-                            <input type="text" class="form-control rounded-3 shadow-sm input-hover" id="actividad" name="actividad" required>
+                            <input type="text" class="form-control rounded-3 shadow-sm input-hover" id="nombre" name="nombre" required>
                         </div>
 
                         <div class="col-md-6">
                             <label for="fecha" class="form-label fw-semibold">Fecha *</label>
-                            <input type="date" class="form-control rounded-3 shadow-sm input-hover" id="fecha" name="fecha" required>
+                            <input type="date" class="form-control rounded-3 shadow-sm input-hover" id="fecha" name="fecha" value="{{date('Y-m-d')}}">
                         </div>
 
                         <div class="col-md-6">
                             <label for="hora" class="form-label fw-semibold">Hora *</label>
-                            <input type="time" class="form-control rounded-3 shadow-sm input-hover" id="hora" name="hora" required>
+                            <input type="time" class="form-control rounded-3 shadow-sm input-hover" id="hora" name="hora" value="{{ now()->format('H:i') }}" required>
                         </div>
 
                         <div class="col-12">

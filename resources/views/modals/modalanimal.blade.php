@@ -45,7 +45,7 @@
 
                         <div class="col-md-6">
                             <label for="fecha_nacimiento" class="form-label fw-semibold">Fecha de Nacimiento (opcional)</label>
-                            <input type="date" class="form-control rounded-3 shadow-sm input-hover" id="fecha_nacimiento" name="fecha_nacimiento">
+                            <input type="date" class="form-control rounded-3 shadow-sm input-hover" id="fecha_nacimiento" name="fecha_nacimiento" value="{{date('Y-m-d')}}">
                         </div>
 
                         <div class="col-md-6">

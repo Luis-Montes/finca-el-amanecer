@@ -63,13 +63,15 @@
                                     </tr>
                                 </thead>
                                 <tbody id="tabla-realizadas">
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2025-10-18</td>
-                                        <td>Vacunación anual</td>
-                                        <td>Desrcr</td>
-                                        <td>Juan Pérez</td>
-                                    </tr>
+                                @foreach($reportes->where('estado', 'Completada') as $index => $reporte)
+                                <tr data-animal="{{ $reporte->animal_id }}">
+                                    <td>{{ $reporte->updated_at }}</td>
+                                    <td>{{ $reporte->tipo }}</td>
+                                    <td>{{ $reporte->nombre }}</td>
+                                    <td>{{ $reporte->descripcion }}</td>
+                                    <td>{{ $reporte->responsable_nombre }}</td>
+                                </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -89,16 +91,21 @@
                                     </tr>
                                 </thead>
                                 <tbody id="tabla-programadas">
-                                @foreach($reportes as $index => $reporte)
+                                @foreach($reportes->where('estado', 'Programada') as $index => $reporte)
                                 <tr data-animal="{{ $reporte->animal_id }}">
                                     <td>{{ $reporte->fecha }}</td>
                                     <td>{{ $reporte->tipo }}</td>
-                                    {{-- <td>Animal #{{ $reporte->animal_id }}</td> --}}
-                                    <td>{{ $reporte->actividad }}</td>
-                                    <td>{{ $reporte->descripcion }}</td>
+                                    <td>{{ $reporte->nombre }}</td>
+                                    <td>{{ $reporte->observaciones }}</td>
                                     <td>{{ $reporte->estado }}</td>
                                     <td>
-                                        <button class="btn btn-sm btn-success" onclick="openRegistroModal({{ $reporte->id }})">Completar</button>
+                                        <form action="{{ route('reportes.completar', $reporte->id) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button type="submit" class="btn btn-sm btn-success">
+                                                Completar
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach
