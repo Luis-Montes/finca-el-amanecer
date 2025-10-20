@@ -70,7 +70,8 @@
             </td>
             <td>
                 <!-- Botón Editar -->
-                <button class="btn btn-sm btn-warning" onclick="openAnimalModal({{ $animal->id }})">>
+                <button class="btn btn-sm btn-warning"
+                    onclick="openAnimalModal('{{ $animal->id }}', '{{ $animal->matricula }}', '{{ $animal->nombre }}', '{{ $animal->especie }}', '{{ $animal->raza }}', '{{ $animal->fecha_nacimiento }}', '{{ $animal->sexo }}', '{{ $animal->estado }}', `{{ $animal->observaciones }}`)">
                     Editar
                 </button>
 

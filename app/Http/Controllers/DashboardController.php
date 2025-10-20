@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Animal;
+use App\Models\Arbol;
 use App\Models\Registro;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,9 +20,10 @@ class DashboardController extends Controller
             $animales = Animal::all();
             $especies = Animal::select('especie')->distinct()->pluck('especie');
             $estados  = Animal::select('estado')->distinct()->pluck('estado');
-
+            $arboles = Arbol::all();
             $trabajadores = User::all();
             $reportes = Registro::all();
+            
 
             $dbOnline = true;
             $dbError = null;
@@ -35,11 +37,12 @@ class DashboardController extends Controller
             $estados = collect();
             $trabajadores = collect();
             $reportes = collect();
+            $arboles = collect();
 
             $dbOnline = false;
             $dbError = $e->getMessage();
         }
-        return view('dashboard.dashboard', compact('animales', 'especies', 'estados', 'trabajadores', 'reportes', 'dbOnline', 'dbError' ));
+        return view('dashboard.dashboard', compact('animales', 'especies', 'estados', 'trabajadores', 'reportes', 'arboles', 'dbOnline', 'dbError' ));
         
 
 

@@ -203,22 +203,7 @@
             @include('partials.animals')
 
 
-            <div id="plants" class="module" style="display:none;">
-                <div class="panel panel-success">
-                    <div class="panel-heading">Árboles</div>
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered table-hover">
-                                <thead><tr><th>#</th><th>Árbol</th><th>Altura</th></tr></thead>
-                                <tbody>
-                                    <tr><td>1</td><td>Roble</td><td>20m</td></tr>
-                                    <tr><td>2</td><td>Pino</td><td>25m</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @include('partials.trees')
 
             <div id="tools" class="module" style="display:none;">
                 <div class="panel panel-success">
@@ -256,11 +241,14 @@
     <script src="{{ asset('js/modals_animal.js') }}"></script>
     <script src="{{ asset('js/modals_empleado.js') }}"></script>
     <script src="{{ asset('js/modals_registro.js') }}"></script>
+    <script src="{{ asset('js/modals_arbol.js') }}"></script>
     <script src="{{ asset('js/modals_historial.js') }}"></script>
+    
     
     @include('modals.modalanimal')
     @include('modals.modalempleados')
     @include('modals.modalregistro');
+    @include('modals.modalarbol');
     @include('modals.modalshistorial');
 
 
