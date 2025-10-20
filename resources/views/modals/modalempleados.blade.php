@@ -20,27 +20,27 @@
 
                         <div class="col-md-6">
                             <label for="nombre" class="form-label fw-semibold">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                            <input type="text" class="form-control" id="nombre_empleado" name="nombre" required>
                         </div>
                     
                         <div class="col-md-6">
                             <label for="nombre" class="form-label fw-semibold">Apellidos</label>
-                            <input type="text" class="form-control" id="apellidos" name="apellidos" required>
+                            <input type="text" class="form-control" id="apellidos_empleado" name="apellidos" required>
                         </div>
 
                         <div class="col-md-6">
                             <label for="telefono" class="form-label fw-semibold">Telefono</label>
-                            <input type="text" class="form-control" id="telefono" name="telefono" required>
+                            <input type="text" class="form-control" id="telefono_empleado" name="telefono" required>
                         </div>
 
                         <div class="col-md-6">
                             <label for="password" class="form-label fw-semibold">Contraseña</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
+                            <input type="password" class="form-control" id="password_empleado" name="password" required>
                         </div>
 
                         <div class="col-md-6">
                             <label for="rol" class="form-label fw-semibold">Rol</label>
-                            <select class="form-control" id="rol" name="rol" required>
+                            <select class="form-control" id="rol_empleado" name="rol" required>
                                 <option value="administrador">Administrador</option>
                                 <option value="trabajador">Trabajador</option>
                             </select>

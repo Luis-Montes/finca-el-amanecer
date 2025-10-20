@@ -1,14 +1,12 @@
 <div id="plants" class="module" style="display: none">
     <div class="panel panel-success">
-        <div class="panel-heading">Trabajadores</div>
+        <div class="panel-heading">Árboles</div>
         <div class="panel-body">
-            <button
-                class="btn btn-success"
-                data-bs-toggle="modal"
-                data-bs-target="#modalAgregarArbol"
-            >
-                <i class="bi bi-plus-circle"></i> Agregar Árbol
-            </button>
+
+        <button class="btn btn-success" onclick="openArbolModal('insert')" >
+            <i class="bi bi-plus-circle"></i> Agregar Árbol
+        </button>
+
             <div class="table-responsive">
                 <table
                     id="table-arboles"
@@ -22,10 +20,9 @@
                             <th>Especie</th>
                             <th>Tipo</th>
                             <th>Estado</th>
-                            <th>Ultima Acción</th>
                             <th>Historial</th>
                             <th>Registrar</th>
-                            <th>Acciones</th>
+                            {{-- <th>Acciones</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -34,11 +31,9 @@
                         <td>{{ $arbol->id }}</td>
                         <td>{{ $arbol->matricula }}</td>
                         <td>{{ $arbol->nombre }}</td>
-                        <td>{{ $arbol->tipo }}</td>
                         <td>{{ $arbol->especie }}</td>
-                        <td>{{ $arbol->fecha_plantacion }}</td>
+                        <td>{{ $arbol->tipo }}</td>
                         <td>{{ $arbol->estado }}</td>
-                        <td>{{ $arbol->observaciones }}</td>
                         <td>
                             <button class="btn btn-sm btn-primary" onclick="openRegistroModal({{ $arbol->id }})">Registro</button>
                         </td>
@@ -49,18 +44,18 @@
                             </button>
                         </td>
                         <td>
-                            {{-- <!-- Botón Editar -->
+                            <!-- Botón Editar -->
                             <button class="btn btn-sm btn-warning"
-                                onclick="openarbolModal('{{ $arbol->id }}', '{{ $arbol->matricula }}', '{{ $arbol->nombre }}', '{{ $arbol->especie }}', '{{ $arbol->raza }}', '{{ $arbol->fecha_nacimiento }}', '{{ $arbol->sexo }}', '{{ $arbol->estado }}', `{{ $arbol->observaciones }}`)">
+                                onclick="openArbolModal('update', '{{ $arbol->id }}', '{{ $arbol->matricula }}', '{{ $arbol->nombre }}', '{{ $arbol->especie }}', '{{ $arbol->tipo }}', '{{ $arbol->fecha_plantacion }}', '{{ $arbol->estado }}', '{{ $arbol->observaciones }}')">
                                 Editar
                             </button>
 
                             <!-- Botón Eliminar -->
-                            <form action="{{ route('arbols.destroy', $arbol->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('¿Seguro que deseas eliminar este arbol?')">
+                            <form action="{{ route('trees.destroy', $arbol->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('¿Seguro que deseas eliminar este arbol?')">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-sm btn-danger" type="submit">Eliminar</button>
-                            </form> --}}
+                            </form>
                         </td>
                     </tr>
                     @endforeach
@@ -70,3 +65,5 @@
         </div>
     </div>
 </div>
+
+

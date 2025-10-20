@@ -9,28 +9,45 @@ class AnimalController extends Controller
 {
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'matricula' => 'required|unique:animales,matricula',
-            'nombre' => 'nullable|string|max:255',
-            'especie' => 'required|string|max:255',
-            'raza' => 'required|string|max:255',
-            'fecha_nacimiento' => 'nullable|date',
-            'sexo' => 'required|string',
-            'estado' => 'required|string',
-            'observaciones' => 'nullable|string'
-        ]);
-
-        $animal = Animal::create($validated);
-
-        if ($request->ajax()) {
-            return response()->json(['success' => true, 'animal' => $animal]);
+        $eventStore = $request->input('evento_store');
+        if ($eventStore == 'insert')
+        {
+            $animal = $this->create($request);
+            if ($request->ajax()) {
+                return response()->json(['success' => true, 'animal' => $animal]);
+            }
+            return redirect()->back()->with('success', 'Animal agregado correctamente.');
+        }
+        else
+        {
+            $this->update($request);
+            return redirect()->back()->with('success', 'Animal actualizado correctamente.');
         }
 
-        return redirect()->back()->with('success', 'Animal agregado correctamente.');
+
     }
 
-    public function update(Request $request, $id)
+    private function create(Request $request)
     {
+        $validated = $request->validate([
+                'matricula' => 'required|unique:animales,matricula',
+                'nombre' => 'nullable|string|max:255',
+                'especie' => 'required|string|max:255',
+                'raza' => 'required|string|max:255',
+                'fecha_nacimiento' => 'nullable|date',
+                'sexo' => 'required|string',
+                'estado' => 'required|string',
+                'observaciones' => 'nullable|string'
+            ]);
+
+            $animal = Animal::create($validated);
+
+            return $animal;
+    }
+
+    private function update(Request $request)
+    {
+        $id = $request->input('animal_id');
         $animal = Animal::findOrFail($id);
 
         $validated = $request->validate([
@@ -45,8 +62,6 @@ class AnimalController extends Controller
         ]);
 
         $animal->update($validated);
-
-        return redirect()->back()->with('success', 'Animal actualizado correctamente.');
     }
 
     public function destroy($id)

@@ -8,8 +8,8 @@ Este proyecto es una aplicación desarrollada en **Laravel 12** que permite gest
 
 Antes de comenzar, asegúrate de tener instalado:
 
-- [PHP 8.2+](https://www.php.net/)
-- [Composer](https://getcomposer.org/)
+- [PHP 8.3.18](https://www.php.net/)
+- [Composer ver. 2.8.9](https://getcomposer.org/)
 - [Node.js y NPM](https://nodejs.org/)
 - [MySQL o MariaDB](https://www.mysql.com/) (u otro motor compatible)
 - [Git](https://git-scm.com/)
@@ -20,6 +20,9 @@ Antes de comenzar, asegúrate de tener instalado:
 composer install
 npm install
 
+# Paquetes
+composer require barryvdh/laravel-dompdf
+
 # Configurar archivo .env:
 cp .env.example .env
 
@@ -27,5 +30,5 @@ cp .env.example .env
 finca_el_amanecer
 php artisan migrate
 
-# Para crear un usuario ejecuta la siguiente linea:
+# crear un usuario administrador
 php artisan make:admin

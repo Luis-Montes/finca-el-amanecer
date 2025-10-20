@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Animal;
 use App\Models\Arbol;
+use App\Models\Herramienta;
 use App\Models\Registro;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -23,6 +24,7 @@ class DashboardController extends Controller
             $arboles = Arbol::all();
             $trabajadores = User::all();
             $reportes = Registro::all();
+            $herramientas = Herramienta::all();
             
 
             $dbOnline = true;
@@ -38,11 +40,13 @@ class DashboardController extends Controller
             $trabajadores = collect();
             $reportes = collect();
             $arboles = collect();
+            $herramientas = collect();
 
             $dbOnline = false;
             $dbError = $e->getMessage();
         }
-        return view('dashboard.dashboard', compact('animales', 'especies', 'estados', 'trabajadores', 'reportes', 'arboles', 'dbOnline', 'dbError' ));
+        return view('dashboard.dashboard', compact('animales', 'especies', 'estados', 'trabajadores', 
+        'reportes', 'arboles', 'herramientas', 'dbOnline', 'dbError' ));
         
 
 

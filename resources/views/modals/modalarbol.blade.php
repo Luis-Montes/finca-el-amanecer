@@ -8,24 +8,25 @@
                 </h5>
             </div>
 
-            <form id="form-arbol" method="POST">
+            <form id="form-arbol" action="{{ route('trees.store') }}" method="POST">
                 @csrf
                 <div class="modal-body p-4">
                     <div class="row g-3">
-
+                        <input id="evento_store_arbol" type="hidden" name="evento_store" />
+                        <input id="id_arbol" type="hidden" name="arbol_id" />
                         <div class="col-md-6">
                             <label for="matricula" class="form-label fw-semibold">Matrícula</label>
-                            <input type="text" class="form-control" id="matricula_empleado" name="matricula" readonly>
+                            <input type="text" class="form-control" id="matricula_arbol" name="matricula" readonly>
                         </div>
 
                         <div class="col-md-6">
                             <label for="nombre" class="form-label fw-semibold">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                            <input type="text" class="form-control" id="nombre_arbol" name="nombre" required>
                         </div>
                     
                         <div class="col-md-6">
                             <label for="rol" class="form-label fw-semibold">Tipo *</label>
-                            <select class="form-control" id="tipo" name="tipo" required>
+                            <select class="form-control" id="tipo_arbol" name="tipo" required>
                                 <option value="">Seleccionar especie</option>
                                 <option value="Arbol Frutal">Árbol Frutal</option>
                                 <option value="Arbol Ornamental">Árbol Ornamental</option>
@@ -37,7 +38,7 @@
 
                         <div class="col-md-6">
                             <label for="telefono" class="form-label fw-semibold">Especie</label>
-                            <input type="text" class="form-control" id="especie" name="especie" required>
+                            <input type="text" class="form-control" id="especie_arbol" name="especie" required>
                         </div>
 
                         <div class="col-md-6">
@@ -46,8 +47,8 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="rol" class="form-label fw-semibold">Tipo *</label>
-                            <select class="form-control" id="tipo" name="tipo" required>
+                            <label for="rol" class="form-label fw-semibold">Estado</label>
+                            <select class="form-control" id="estado_arbol" name="estado" required>
                                 <option value="Saludable">Saludable</option>
                                 <option value="Enfermo">Enfermo</option>
                                 <option value="Talado">Talado</option>
@@ -55,6 +56,10 @@
                             </select>
                         </div>
 
+                        <div class="col-md-12">
+                            <label for="observaciones" class="form-label fw-semibold">Observaciones</label>
+                            <textarea class="form-control rounded-3 shadow-sm input-hover" id="observaciones_arbol" name="observaciones" rows="3"></textarea>
+                        </div>
 
                     </div>
                 </div>

@@ -23,7 +23,8 @@
             </select>
         </div>
 
-        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAgregarAnimal">
+        <!-- data-bs-toggle="modal" data-bs-target="#modalAgregarAnimal" -->
+        <button class="btn btn-success" onclick="openAnimalModal('insert')" >
             <i class="bi bi-plus-circle"></i> Agregar Animal
         </button>
     </div>
@@ -47,6 +48,7 @@
             <th>Estado</th>
             <th>Registro</th>
             <th>Historial</th>
+            <th>Acciones</th>
         </tr>
         </thead>
         <tbody>
@@ -71,7 +73,7 @@
             <td>
                 <!-- Botón Editar -->
                 <button class="btn btn-sm btn-warning"
-                    onclick="openAnimalModal('{{ $animal->id }}', '{{ $animal->matricula }}', '{{ $animal->nombre }}', '{{ $animal->especie }}', '{{ $animal->raza }}', '{{ $animal->fecha_nacimiento }}', '{{ $animal->sexo }}', '{{ $animal->estado }}', `{{ $animal->observaciones }}`)">
+                    onclick="openAnimalModal('update', '{{ $animal->id }}', '{{ $animal->matricula }}', '{{ $animal->nombre }}', '{{ $animal->especie }}', '{{ $animal->raza }}', '{{ $animal->fecha_nacimiento }}', '{{ $animal->sexo }}', '{{ $animal->estado }}', `{{ $animal->observaciones }}`)">
                     Editar
                 </button>
 

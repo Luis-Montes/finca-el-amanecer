@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\ArbolController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistroController;
@@ -66,7 +67,6 @@ Route::middleware(['auth', 'role:administrador', NoCache::class])->group(functio
 
         return view('partials.animals', compact('animales', 'especies', 'estados', 'dbOnline'));
     });
-    Route::put('/animals/{id}', [AnimalController::class, 'update'])->name('animals.update');
     Route::delete('/animals/{id}', [AnimalController::class, 'destroy'])->name('animals.destroy');
 
     // Empleados
@@ -76,11 +76,17 @@ Route::middleware(['auth', 'role:administrador', NoCache::class])->group(functio
         return view('partials.empleados', compact('trabajadores'));
     });
 
+    // Arboles
+    Route::post('/trees/store', [ArbolController::class, 'store'])->name('trees.store');
+    Route::delete('/trees/destroy/{id}', [ArbolController::class, 'delete'])->name('trees.destroy');
+
     // Registros e historial
     Route::get('/reports/partial', function () {
         $reportes = Registro::all();
         return view('partials.reports', compact('reportes'));
     });
+
+    Route::get('/reports/download', [RegistroController::class, 'download'])->name('reports.pdf');
     Route::post('/registro/store', [RegistroController::class, 'store'])->name('registro.store');
     Route::patch('/reportes/{id}/completar', [RegistroController::class, 'completar'])->name('reportes.completar');
 });

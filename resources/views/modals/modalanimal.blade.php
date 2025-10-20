@@ -12,20 +12,21 @@
                 @csrf
                 <div class="modal-body p-4">
                     <div class="row g-3">
-
+                        <input id="evento_store_animal" type="hidden" name="evento_store" />
+                        <input id="id_animal" type="hidden" name="animal_id" />
                         <div class="col-md-6">
                             <label for="matricula" class="form-label fw-semibold">Matrícula</label>
-                            <input type="text" class="form-control rounded-3 shadow-sm input-hover" id="matricula" name="matricula" readonly>
+                            <input type="text" class="form-control rounded-3 shadow-sm input-hover" id="matricula_animal" name="matricula" readonly>
                         </div>
 
                         <div class="col-md-6">
                             <label for="nombre" class="form-label fw-semibold">Nombre (opcional)</label>
-                            <input type="text" class="form-control rounded-3 shadow-sm input-hover" id="nombre" name="nombre">
+                            <input type="text" class="form-control rounded-3 shadow-sm input-hover" id="nombre_animal" name="nombre">
                         </div>
 
                         <div class="col-md-6">
                             <label for="especie" class="form-label fw-semibold">Especie</label>
-                            <select class="form-control rounded-3 shadow-sm input-hover" id="especie" name="especie" required>
+                            <select class="form-control rounded-3 shadow-sm input-hover" id="especie_animal" name="especie" required>
                                 <option value="">Seleccionar especie</option>
                                 <option value="Vaca">Vaca</option>
                                 <option value="Cerdo">Cerdo</option>
@@ -40,17 +41,17 @@
 
                         <div class="col-md-6">
                             <label for="raza" class="form-label fw-semibold">Raza</label>
-                            <input type="text" class="form-control rounded-3 shadow-sm input-hover" id="raza" name="raza" required>
+                            <input type="text" class="form-control rounded-3 shadow-sm input-hover" id="raza_animal" name="raza" required>
                         </div>
 
                         <div class="col-md-6">
                             <label for="fecha_nacimiento" class="form-label fw-semibold">Fecha de Nacimiento (opcional)</label>
-                            <input type="date" class="form-control rounded-3 shadow-sm input-hover" id="fecha_nacimiento" name="fecha_nacimiento" value="{{date('Y-m-d')}}">
+                            <input type="date" class="form-control rounded-3 shadow-sm input-hover" id="fecha_nacimiento_animal" name="fecha_nacimiento" value="{{date('Y-m-d')}}">
                         </div>
 
                         <div class="col-md-6">
                             <label for="sexo" class="form-label fw-semibold">Sexo</label>
-                            <select class="form-control rounded-3 shadow-sm input-hover" id="sexo" name="sexo" required>
+                            <select class="form-control rounded-3 shadow-sm input-hover" id="sexo_animal" name="sexo" required>
                                 <option value="">Seleccionar</option>
                                 <option value="Macho">Macho</option>
                                 <option value="Hembra">Hembra</option>
@@ -59,7 +60,7 @@
 
                         <div class="col-md-6">
                             <label for="estado" class="form-label fw-semibold">Estado</label>
-                            <select class="form-control rounded-3 shadow-sm input-hover" id="estado" name="estado" required>
+                            <select class="form-control rounded-3 shadow-sm input-hover" id="estado_animal" name="estado" required>
                                 <option value="">Seleccionar</option>
                                 <option value="Activo">Activo</option>
                                 <option value="Vendido">Vendido</option>
@@ -69,7 +70,7 @@
 
                         <div class="col-md-12">
                             <label for="observaciones" class="form-label fw-semibold">Observaciones</label>
-                            <textarea class="form-control rounded-3 shadow-sm input-hover" id="observaciones" name="observaciones" rows="3"></textarea>
+                            <textarea class="form-control rounded-3 shadow-sm input-hover" id="observaciones_animal" name="observaciones" rows="3"></textarea>
                         </div>
 
                     </div>

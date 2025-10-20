@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('matricula')->unique();
             $table->string('nombre')->nullable();
-            $table->string('tipo', ['Arbol Frutal', 'Arbol Ornamental', 'Parcela de Plantacion', 'Cultivo', 'Hortaliza']);
+            $table->enum('tipo', ['Arbol Frutal', 'Arbol Ornamental', 'Parcela de Plantacion', 'Cultivo', 'Hortaliza']);
             $table->string('especie');
             $table->date('fecha_plantacion')->nullable();
             $table->enum('estado', ['Saludable', 'Enfermo', 'Talado']);

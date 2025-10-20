@@ -8,11 +8,11 @@
                 </h5>
             </div>
 
-            <form id="form-registro" action="{{ route('registro.store') }}" method="POST">
+            <form action="{{ route('registro.store') }}" method="POST">
                 @csrf
                 <div class="modal-body p-4">
                     <div class="row g-3">
-                        <input type="hidden" id="animal_id" name="animal_id">
+                        <input type="hidden" id="animal_id_registro" name="animal_id">
 
                         <div class="col-md-6">
                             <label for="accion" class="form-label fw-semibold">Tipo de Acción *</label>

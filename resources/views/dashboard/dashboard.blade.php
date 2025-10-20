@@ -205,22 +205,7 @@
 
             @include('partials.trees')
 
-            <div id="tools" class="module" style="display:none;">
-                <div class="panel panel-success">
-                    <div class="panel-heading">Herramientas</div>
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered table-hover">
-                                <thead><tr><th>#</th><th>Herramienta</th><th>Cantidad</th></tr></thead>
-                                <tbody>
-                                    <tr><td>1</td><td>Martillo</td><td>15</td></tr>
-                                    <tr><td>2</td><td>Destornillador</td><td>30</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @include('partials.tools')
 
             @include('partials.reports')
 
@@ -244,10 +229,9 @@
     <script src="{{ asset('js/modals_arbol.js') }}"></script>
     <script src="{{ asset('js/modals_historial.js') }}"></script>
     
-    
-    @include('modals.modalanimal')
     @include('modals.modalempleados')
     @include('modals.modalregistro');
+    @include('modals.modalanimal')
     @include('modals.modalarbol');
     @include('modals.modalshistorial');
 

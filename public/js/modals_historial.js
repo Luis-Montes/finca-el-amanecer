@@ -1,5 +1,5 @@
-function openModalHistorial(animalId, matricula = '', nombre = '', estado = '') {
-    document.getElementById('animal_id').value = animalId;
+function openModalHistorial(animalId = '', matricula = '', nombre = '', estado = '') {
+    document.getElementById('animal_id_historial').value = animalId;
     document.getElementById('animal_id_display').value = animalId;
     document.getElementById('animal_matricula').value = matricula;
     document.getElementById('animal_nombre').value = nombre;

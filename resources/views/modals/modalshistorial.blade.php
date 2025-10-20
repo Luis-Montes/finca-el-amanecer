@@ -9,8 +9,8 @@
             </div>
 
             <div class="modal-body">
-                <form id="form-registro">
-                    <input type="hidden" id="animal_id" name="animal_id">
+                <form>
+                    <input type="hidden" id="animal_id_historial" name="animal_id">
 
                     <div class="row g-3 mb-3">
                         <div class="col-md-3">

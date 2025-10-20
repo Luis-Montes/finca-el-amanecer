@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Registro;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class RegistroController extends Controller
 {
@@ -55,7 +56,12 @@ class RegistroController extends Controller
         return redirect()->back()->with('success', 'Reporte completado correctamente');
     }
 
-    
+    public function download()
+    {
+        $reportes = Registro::where('estado', 'Completada')->get();
+        $pdf = PDF::loadView('reports.reports', compact('reportes'));
+        return $pdf->download('reportes.pdf');
+    }
 
 
 
