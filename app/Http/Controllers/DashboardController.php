@@ -25,6 +25,11 @@ class DashboardController extends Controller
             $trabajadores = User::all();
             $reportes = Registro::all();
             $herramientas = Herramienta::all();
+
+            $totalAnimales = Animal::count();
+            $totalArboles = Arbol::count();
+            $totalTrabajadores = User::count();
+            $totalHerramientas = Herramienta::count();
             
 
             $dbOnline = true;
@@ -46,7 +51,8 @@ class DashboardController extends Controller
             $dbError = $e->getMessage();
         }
         return view('dashboard.dashboard', compact('animales', 'especies', 'estados', 'trabajadores', 
-        'reportes', 'arboles', 'herramientas', 'dbOnline', 'dbError' ));
+        'reportes', 'arboles', 'herramientas', 'totalAnimales', 
+        'totalArboles', 'totalTrabajadores', 'totalHerramientas', 'dbOnline', 'dbError' ));
         
 
 

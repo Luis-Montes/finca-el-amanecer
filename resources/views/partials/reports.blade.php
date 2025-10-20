@@ -2,7 +2,7 @@
     <div class="panel panel-success">
         <div class="panel-heading">Reportes</div>
         <div class="panel-body">
-            <a class="btn btn-success" href="/reports/download" download="reports.pdf"></a>
+            <a class="btn btn-success" href="/reports/download" download="reports.pdf">Guardar Reportes</a>
             <hr/>
             <div class="table-responsive">
                 <table

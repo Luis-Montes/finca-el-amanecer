@@ -23,7 +23,6 @@
             </select>
         </div>
 
-        <!-- data-bs-toggle="modal" data-bs-target="#modalAgregarAnimal" -->
         <button class="btn btn-success" onclick="openAnimalModal('insert')" >
             <i class="bi bi-plus-circle"></i> Agregar Animal
         </button>

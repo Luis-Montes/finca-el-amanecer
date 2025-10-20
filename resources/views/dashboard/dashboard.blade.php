@@ -117,28 +117,28 @@
                     <div class="col-md-3 col-sm-6">
                         <div class="alert alert-info text-center">
                             <i class="fa fa-paw fa-5x"></i>
-                            <h3>500</h3>
+                            <h3>{{$totalAnimales}}</h3>
                             Total de Animales
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6">
                         <div class="alert alert-success text-center">
                             <i class="fa fa-tree fa-5x"></i>
-                            <h3>300</h3>
+                            <h3>{{$totalArboles}}</h3>
                             Total de Árboles
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6">
                         <div class="alert alert-warning text-center">
                             <i class="fa fa-wrench fa-5x"></i>
-                            <h3>56</h3>
+                            <h3>{{$totalHerramientas}}</h3>
                             Total de Herramientas
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6">
                         <div class="alert alert-danger text-center">
                             <i class="fa fa-users fa-5x"></i>
-                            <h3>30</h3>
+                            <h3>{{$totalTrabajadores}}</h3>
                             Total de Usuarios
                         </div>
                     </div>
@@ -227,12 +227,14 @@
     <script src="{{ asset('js/modals_empleado.js') }}"></script>
     <script src="{{ asset('js/modals_registro.js') }}"></script>
     <script src="{{ asset('js/modals_arbol.js') }}"></script>
+    <script src="{{ asset('js/modals-herramienta.js') }}"></script>
     <script src="{{ asset('js/modals_historial.js') }}"></script>
     
     @include('modals.modalempleados')
     @include('modals.modalregistro');
     @include('modals.modalanimal')
     @include('modals.modalarbol');
+    @include('modals.modalherramienta')
     @include('modals.modalshistorial');
 
 

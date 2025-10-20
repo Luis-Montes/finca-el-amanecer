@@ -20,9 +20,7 @@
                             <th>Especie</th>
                             <th>Tipo</th>
                             <th>Estado</th>
-                            <th>Historial</th>
-                            <th>Registrar</th>
-                            {{-- <th>Acciones</th> --}}
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,15 +32,6 @@
                         <td>{{ $arbol->especie }}</td>
                         <td>{{ $arbol->tipo }}</td>
                         <td>{{ $arbol->estado }}</td>
-                        <td>
-                            <button class="btn btn-sm btn-primary" onclick="openRegistroModal({{ $arbol->id }})">Registro</button>
-                        </td>
-                        <td>
-                            <button class="btn btn-sm btn-info"
-                                onclick="openModalHistorial('{{ $arbol->id }}', '{{ $arbol->matricula }}', '{{ $arbol->nombre }}', '{{ $arbol->estado }}')">
-                                Historial
-                            </button>
-                        </td>
                         <td>
                             <!-- Botón Editar -->
                             <button class="btn btn-sm btn-warning"

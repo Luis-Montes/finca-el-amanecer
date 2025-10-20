@@ -2,13 +2,11 @@
     <div class="panel panel-success">
         <div class="panel-heading">Herramientas</div>
         <div class="panel-body">
-            <button
-                class="btn btn-success"
-                data-bs-toggle="modal"
-                data-bs-target="#modalAgregarHerramienta"
-            >
-                <i class="bi bi-plus-circle"></i> Agregar Herramienta
-            </button>
+
+        <button class="btn btn-success" onclick="openHerramientaModal('insert')" >
+            <i class="bi bi-plus-circle"></i> Agregar Herramienta
+        </button>
+
             <div class="table-responsive">
                 <table
                     id="table-herramientas"
@@ -22,14 +20,11 @@
                             <th>Tipo</th>
                             <th>Estado</th>
                             <th>Ultima Acción</th>
-                            <th>Historial</th>
-                            <th>Registrar</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                     @foreach($herramientas as $index => $herramienta)
-                    {{-- <tr data-especie="{{ $herramienta->especie }}" data-estado="{{ $herramienta->estado }}"> --}}
                         <td>{{ $herramienta->id }}</td>
                         <td>{{ $herramienta->matricula }}</td>
                         <td>{{ $herramienta->nombre }}</td>
@@ -38,15 +33,6 @@
                         <td>{{ $herramienta->fecha_plantacion }}</td>
                         <td>{{ $herramienta->estado }}</td>
                         <td>{{ $herramienta->observaciones }}</td>
-                        <td>
-                            <button class="btn btn-sm btn-primary" onclick="openRegistroModal({{ $herramienta->id }})">Registro</button>
-                        </td>
-                        <td>
-                            <button class="btn btn-sm btn-info"
-                                onclick="openModalHistorial('{{ $herramienta->id }}', '{{ $herramienta->matricula }}', '{{ $herramienta->nombre }}', '{{ $herramienta->estado }}')">
-                                Historial
-                            </button>
-                        </td>
                         <td>
                             {{-- <!-- Botón Editar -->
                             <button class="btn btn-sm btn-warning"
