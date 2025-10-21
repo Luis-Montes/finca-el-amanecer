@@ -8,10 +8,12 @@
                 </h5>
             </div>
 
-            <form id="form-empleado" action="{{ route('empleado.store') }}" method="POST">
+            <form id="form-empleado" action="{{route('employe.store')}}" method="POST">
                 @csrf
                 <div class="modal-body p-4">
                     <div class="row g-3">
+                        <input id="evento_store_empleado" type="hidden" name="evento_store" />
+                        <input id="id_empleado" type="hidden" name="empleado_id" />
 
                         <div class="col-md-6">
                             <label for="matricula" class="form-label fw-semibold">Matrícula</label>

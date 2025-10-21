@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\TrabajadorController;
+use App\Http\Controllers\HerramientaController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\NoCache;
 use App\Models\Animal;
@@ -70,7 +71,7 @@ Route::middleware(['auth', 'role:administrador', NoCache::class])->group(functio
     Route::delete('/animals/{id}', [AnimalController::class, 'destroy'])->name('animals.destroy');
 
     // Empleados
-    Route::post('/empleado/store', [UserController::class, 'store'])->name('empleado.store');
+    // Route::post('/empleado/store', [UserController::class, 'store'])->name('empleado.store');
     Route::get('/employees/partial', function () {
         $trabajadores = User::all();
         return view('partials.empleados', compact('trabajadores'));
@@ -79,6 +80,14 @@ Route::middleware(['auth', 'role:administrador', NoCache::class])->group(functio
     // Arboles
     Route::post('/trees/store', [ArbolController::class, 'store'])->name('trees.store');
     Route::delete('/trees/destroy/{id}', [ArbolController::class, 'delete'])->name('trees.destroy');
+
+    // Herramientas
+    Route::post('/tools/store', [HerramientaController::class, 'store'])->name('tools.store');
+    Route::delete('/tools/destroy/{id}', [HerramientaController::class, 'delete'])->name('tools.destroy');
+
+    // Usuarios
+    Route::post('/employe/store', [UserController::class, 'store'])->name('employe.store');
+    Route::delete('/employe/destroy/{id}', [UserController::class, 'delete'])->name('employe.destroy');
 
     // Registros e historial
     Route::get('/reports/partial', function () {
@@ -102,3 +111,5 @@ Route::middleware(['auth', 'role:trabajador', NoCache::class])->group(function (
     Route::patch('/trabajador/reportes/{id}/completar', [TrabajadorController::class, 'completarReporte'])
         ->name('trabajador.reportes.completar');
 });
+
+

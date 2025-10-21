@@ -64,14 +64,7 @@
                             >Herramientas</a
                         >
                     </li>
-                    <li class="nav-item">
-                        <a
-                            class="nav-link"
-                            href="javascript:void(0)"
-                            onclick="showModule('reports');"
-                            >Reportes</a
-                        >
-                    </li>
+
                     <li class="nav-item">
                         <a
                             class="nav-link"
@@ -80,6 +73,18 @@
                             >Trabajadores</a
                         >
                     </li>
+
+                    
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="javascript:void(0)"
+                            onclick="showModule('reports');"
+                            >Reportes</a
+                        >
+                    </li>
+
+
                     <li class="nav-item">
                         <a
                             href="#"
@@ -153,17 +158,23 @@
                                     <table class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
-                                                <th>First Name</th>
-                                                <th>Last Name</th>
-                                                <th>Username</th>
-                                                <th>User No.</th>
+                                                <th>Fecha</th>
+                                                <th>Tipo</th>
+                                                <th>Nombre</th>
+                                                <th>Descripcion</th>
+                                                <th>Responsable</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr><td>1</td><td>Mark</td><td>Otto</td><td>@mdo</td><td>100090</td></tr>
-                                            <tr><td>2</td><td>Jacob</td><td>Thornton</td><td>@fat</td><td>100091</td></tr>
-                                            <tr><td>3</td><td>Larry</td><td>the Bird</td><td>@twitter</td><td>100092</td></tr>
+                                        @foreach($reportes->where('estado', 'Completada') as $index => $reporte)
+                                        <tr data-animal="{{ $reporte->animal_id }}">
+                                            <td>{{ $reporte->updated_at }}</td>
+                                            <td>{{ $reporte->tipo }}</td>
+                                            <td>{{ $reporte->nombre }}</td>
+                                            <td>{{ $reporte->descripcion }}</td>
+                                            <td>{{ $reporte->responsable_nombre }}</td>
+                                        </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -179,25 +190,78 @@
                                     <table class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
-                                                <th>First Name</th>
-                                                <th>Last Name</th>
-                                                <th>Username</th>
-                                                <th>User No.</th>
+                                                <th>Fecha</th>
+                                                <th>Tipo</th>
+                                                <th>Nombre</th>
+                                                <th>Observaciones</th>
+                                                <th>Estado</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr><td>1</td><td>Anna</td><td>Smith</td><td>@anna</td><td>200001</td></tr>
-                                            <tr><td>2</td><td>Bob</td><td>Jones</td><td>@bob</td><td>200002</td></tr>
-                                            <tr><td>3</td><td>Carol</td><td>Lee</td><td>@carol</td><td>200003</td></tr>
-                                        </tbody>
+                                        @foreach($reportes->where('estado', 'Programada') as $index => $reporte)
+                                        <tr data-animal="{{ $reporte->animal_id }}">
+                                            <td>{{ $reporte->fecha }}</td>
+                                            <td>{{ $reporte->tipo }}</td>
+                                            <td>{{ $reporte->nombre }}</td>
+                                            <td>{{ $reporte->observaciones }}</td>
+                                            <td>{{ $reporte->estado }}</td>
+                                            <td>
+                                                <form action="{{ route('reportes.completar', $reporte->id) }}" method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit" class="btn btn-sm btn-success">
+                                                        Completar
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        @endforeach
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                
+
+                <div class="row mt-4">
+                    <div class="col-md-4 col-sm-12 mb-3">
+                        <div class="card shadow-sm p-2 text-center">
+                        <h6 class="text-center mb-2">Animales por Especie</h6>
+                        <div style="width: 180px; margin: 0 auto;">
+                            <canvas id="chartAnimales" height="120"></canvas>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12 mb-3">
+                        <div class="card shadow-sm p-2 text-center">
+                        <h6 class="text-center mb-2">Árboles por Especie</h6>
+                        <div style="width: 180px; margin: 0 auto;">
+                            <canvas id="chartArboles" height="120"></canvas>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12 mb-3">
+                        <div class="card shadow-sm p-2 text-center">
+                        <h6 class="text-center mb-2">Herramientas por Tipo</h6>
+                        <div style="width: 180px; margin: 0 auto;">
+                            <canvas id="chartHerramientas" height="120"></canvas>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
             </div>
+
+
+            
+
+            
+
+
 
 
             @include('partials.animals')
@@ -227,7 +291,7 @@
     <script src="{{ asset('js/modals_empleado.js') }}"></script>
     <script src="{{ asset('js/modals_registro.js') }}"></script>
     <script src="{{ asset('js/modals_arbol.js') }}"></script>
-    <script src="{{ asset('js/modals-herramienta.js') }}"></script>
+    <script src="{{ asset('js/modals_herramienta.js') }}"></script>
     <script src="{{ asset('js/modals_historial.js') }}"></script>
     
     @include('modals.modalempleados')
@@ -236,6 +300,69 @@
     @include('modals.modalarbol');
     @include('modals.modalherramienta')
     @include('modals.modalshistorial');
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Datos desde Laravel
+        const animales = @json($animalesPorEspecie);
+        const arboles = @json($arbolesPorEspecie);
+        const herramientas = @json($herramientasPorTipo);
+
+        // === 1️⃣ Animales por especie ===
+        new Chart(document.getElementById('chartAnimales'), {
+            type: 'pie',
+            data: {
+                labels: animales.map(a => a.especie),
+                datasets: [{
+                    data: animales.map(a => a.total),
+                    backgroundColor: ['#5cb85c', '#f0ad4e', '#d9534f', '#5bc0de', '#428bca']
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: { position: 'bottom', labels: { boxWidth: 10 } }
+                }
+            }
+        });
+
+        // === 2️⃣ Árboles por especie ===
+        new Chart(document.getElementById('chartArboles'), {
+            type: 'pie',
+            data: {
+                labels: arboles.map(a => a.especie),
+                datasets: [{
+                    data: arboles.map(a => a.total),
+                    backgroundColor: ['#8BC34A', '#CDDC39', '#4CAF50', '#FFC107', '#009688']
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: { position: 'bottom', labels: { boxWidth: 10 } }
+                }
+            }
+        });
+
+        // === 3️⃣ Herramientas por tipo ===
+        new Chart(document.getElementById('chartHerramientas'), {
+            type: 'pie',
+            data: {
+                labels: herramientas.map(h => h.tipo),
+                datasets: [{
+                    data: herramientas.map(h => h.total),
+                    backgroundColor: ['#9C27B0', '#03A9F4', '#FF9800', '#E91E63', '#795548']
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: { position: 'bottom', labels: { boxWidth: 10 } }
+                }
+            }
+        });
+    });
+    </script>
 
 
 </body>

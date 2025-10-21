@@ -56,12 +56,17 @@ class RegistroController extends Controller
         return redirect()->back()->with('success', 'Reporte completado correctamente');
     }
 
-    public function download()
-    {
-        $reportes = Registro::where('estado', 'Completada')->get();
-        $pdf = PDF::loadView('reports.reports', compact('reportes'));
-        return $pdf->download('reportes.pdf');
-    }
+public function download()
+{
+    $reportes = Registro::where('estado', 'Completada')->get();
+    $pdf = PDF::loadView('reports.reports', compact('reportes'));
+
+    // Generar nombre dinámico: reportes_2025-10-21_22-45.pdf
+    $filename = 'reportes_' . now()->format('Y-m-d_H-i') . '.pdf';
+
+    return $pdf->download($filename);
+}
+
 
 
 

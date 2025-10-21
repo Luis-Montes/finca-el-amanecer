@@ -1,22 +1,75 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('form-empleado');
-    const modal = document.getElementById('modalAgregarEmpleado');
-    const modalInstance = modal ? bootstrap.Modal.getOrCreateInstance(modal) : null;
+async function reloadEmployees() {
+    const res = await fetch('/employees/partial');
+    if (res.ok) {
+        const html = await res.text();
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html;
 
-    if (modal) {
-        modal.addEventListener('show.bs.modal', () => {
-            const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-            let matricula = '';
-            for (let i = 0; i < 8; i++) {
-                matricula += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
-            }
-            document.getElementById('matricula_empleado').value = matricula;
-        });
+        const newTbody = tempDiv.querySelector('#table-empleados tbody');
+        const currentTbody = document.querySelector('#table-empleados tbody');
+
+        if (currentTbody && newTbody) {
+            currentTbody.replaceWith(newTbody);
+        }
     }
+}
 
-    if (form) {
-        form.addEventListener('submit', async (e) => {
+function modalAgregarEmpleado(eventoStore, empleadoId = '', matricula = '', nombre = '', apellidos = '',  telefono = '', password = '', rol = ''){
+    const modal = new bootstrap.Modal(document.getElementById('modalAgregarEmpleado'));
+    modal.show();
+    
+    document.getElementById('evento_store_empleado').value = eventoStore;
+
+    document.getElementById('id_empleado').value = empleadoId;
+
+    if (matricula != '')
+    {
+        document.getElementById('matricula_empleado').value = matricula;
+    }
+    else
+        generarMatriculaEmpleado()
+
+    document.getElementById('nombre_empleado').value = nombre;
+
+    document.getElementById('apellidos_empleado').value = apellidos;
+
+    document.getElementById('telefono_empleado').value = telefono;
+
+    document.getElementById('password_empleado').value = password;
+
+    if (tipo != '')
+    {
+        document.getElementById('rol_empleado').value = rol;
+        for(var i = 0; i < document.getElementById('rol_empleado').options.length; i++ )
+        {
+            if (document.getElementById('rol_empleado').options[i] == rol)
+            {
+                document.getElementById('rol_empleado').selectedIndex = i;
+                return;
+            }
+        }
+    }
+    else
+        document.getElementById('rol_empleado').selectedIndex = 0; 
+    
+    eventForm(modal);
+}
+
+function generarMatriculaEmpleado(){
+    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let matricula = '';
+    for (let i = 0; i < 8; i++) {
+        matricula += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+    }
+    const matriculaInput = document.getElementById('matricula_empleado');
+    if (matriculaInput) matriculaInput.value = matricula;
+}
+
+function eventForm(modal){
+    const form = document.getElementById('form-empleado');
+    form.addEventListener('submit', async (e) => {
             e.preventDefault();
+            e.stopPropagation();
 
             const formData = new FormData(form);
 
@@ -30,23 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
-                if (!response.ok) throw new Error('Error al guardar el trabajador');
+                if (!response.ok) throw new Error('Error en la solicitud');
 
-                const data = await response.json();
-                if (data.success && data.user) {
-                    const tbody = document.querySelector('#table-empleados tbody');
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${tbody.children.length + 1}</td>
-                        <td>${data.user.username}</td>
-                        <td>${data.user.name}</td>
-                        <td>${data.user.apellidos || ''}</td>
-                        <td>${data.user.role}</td>
-                    `;
-                    tbody.appendChild(row);
-                }
-
-                modalInstance?.hide();
+                await reloadTree();
+                modal.hide();
                 form.reset();
 
             } catch (err) {
@@ -54,5 +94,4 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Error al guardar');
             }
         });
-    }
-});
+}

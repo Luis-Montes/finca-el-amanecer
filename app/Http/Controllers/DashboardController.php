@@ -30,6 +30,24 @@ class DashboardController extends Controller
             $totalArboles = Arbol::count();
             $totalTrabajadores = User::count();
             $totalHerramientas = Herramienta::count();
+
+            $registros = Registro::all();
+
+
+            $animalesPorEspecie = Animal::select('especie', DB::raw('count(*) as total'))
+                ->groupBy('especie')
+                ->get();
+            
+            $arbolesPorEspecie = Arbol::select('especie', DB::raw('count(*) as total'))
+                ->groupBy('especie')
+                ->get();
+
+            $herramientasPorTipo = Herramienta::select('tipo', DB::raw('count(*) as total'))
+                ->groupBy('tipo')
+                ->get();
+
+            $labels = $animalesPorEspecie->pluck('especie');
+            $data = $animalesPorEspecie->pluck('total');
             
 
             $dbOnline = true;
@@ -50,11 +68,14 @@ class DashboardController extends Controller
             $dbOnline = false;
             $dbError = $e->getMessage();
         }
-        return view('dashboard.dashboard', compact('animales', 'especies', 'estados', 'trabajadores', 
-        'reportes', 'arboles', 'herramientas', 'totalAnimales', 
-        'totalArboles', 'totalTrabajadores', 'totalHerramientas', 'dbOnline', 'dbError' ));
-        
 
 
+        return view('dashboard.dashboard', compact(
+            'animales', 'especies', 'estados', 'trabajadores', 
+            'reportes', 'arboles', 'herramientas', 'totalAnimales', 
+            'totalArboles', 'totalTrabajadores', 'totalHerramientas', 
+            'dbOnline', 'dbError', 
+            'animalesPorEspecie', 'arbolesPorEspecie', 'herramientasPorTipo'
+        ));
     }
 }

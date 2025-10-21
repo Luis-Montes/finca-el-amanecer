@@ -34,14 +34,14 @@
                         <td>{{ $herramienta->estado }}</td>
                         <td>{{ $herramienta->observaciones }}</td>
                         <td>
-                            {{-- <!-- Botón Editar -->
+                            <!-- Botón Editar -->
                             <button class="btn btn-sm btn-warning"
-                                onclick="openherramientaModal('{{ $herramienta->id }}', '{{ $herramienta->matricula }}', '{{ $herramienta->nombre }}', '{{ $herramienta->especie }}', '{{ $herramienta->raza }}', '{{ $herramienta->fecha_nacimiento }}', '{{ $herramienta->sexo }}', '{{ $herramienta->estado }}', `{{ $herramienta->observaciones }}`)">
+                                onclick="openHerramientaModal('update', '{{ $herramienta->id }}', '{{ $herramienta->matricula }}', '{{ $herramienta->nombre }}', '{{ $herramienta->tipo }}', '{{ $herramienta->fecha_compra }}', '{{ $herramienta->estado }}', '{{ $herramienta->observaciones }}', '{{$herramienta->user_id}}')">
                                 Editar
                             </button>
 
                             <!-- Botón Eliminar -->
-                            <form action="{{ route('herramientas.destroy', $herramienta->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('¿Seguro que deseas eliminar este herramienta?')">
+                            {{-- <form action="{{ route('herramientas.destroy', $herramienta->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('¿Seguro que deseas eliminar este herramienta?')">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-sm btn-danger" type="submit">Eliminar</button>

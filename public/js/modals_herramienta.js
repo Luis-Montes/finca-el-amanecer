@@ -1,6 +1,8 @@
 async function reloadTool() {
-    const res = await fetch('/tools/partial');
-    if (res.ok) {
+    try {
+        const res = await fetch('/tools/partial');
+        if (!res.ok) throw new Error('Error al cargar los animales');
+
         const html = await res.text();
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = html;
@@ -11,23 +13,30 @@ async function reloadTool() {
         if (currentTbody && newTbody) {
             currentTbody.replaceWith(newTbody);
         }
+    } catch (err) {
+        console.error(err);
     }
 }
 
-function openHerramientaModal(eventoStore, herramientaId = '', matricula = '', nombre = '', responsable = '', tipo = '', fecha_compra = '',  estado = '', observaciones = ''){
+
+
+function openHerramientaModal(eventoStore, herramientaId = '', matricula = '', nombre = '', tipo = '', fecha_compra = '', estado = '', observaciones = '', responsable = '',){
     const modal = new bootstrap.Modal(document.getElementById('modalAgregarHerramienta'));
     modal.show();
     
-    document.getElementById('evento_store_arbol').value = eventoStore;
+    document.getElementById('evento_store_herramienta').value = eventoStore;
 
     document.getElementById('id_herramienta').value = herramientaId;
+
     if (matricula != '')
     {
         document.getElementById('matricula_herramienta').value = matricula;
     }
     else
-        generarMatriculaArbol()
+        generarMatriculaHerramienta()
+
     document.getElementById('nombre_herramienta').value = nombre;
+
     if (tipo != '')
     {
         document.getElementById('tipo_herramienta').value = tipo;
@@ -42,10 +51,28 @@ function openHerramientaModal(eventoStore, herramientaId = '', matricula = '', n
     }
     else
         document.getElementById('tipo_herramienta').selectedIndex = 0;
+
+    if (estado != '')
+    {
+        document.getElementById('estado_herramienta').value = estado;
+        for(var i = 0; i < document.getElementById('estado_herramienta').options.length; i++ )
+        {
+            if (document.getElementById('estado_herramienta').options[i] == estado)
+            {
+                document.getElementById('estado_herramienta').selectedIndex = i;
+                return;
+            }
+        }
+    }
+    else
+        document.getElementById('estado_herramienta').selectedIndex = 0;
+
+    document.getElementById('fecha_compra').value = fecha_compra;
+
     if (responsable != '')
     {
         document.getElementById('responsable_herramienta').value = responsable;
-        for(var i = 0; i < document.getElementById('estado_herramienta').options.length; i++ )
+        for(var i = 0; i < document.getElementById('responsable_herramienta').options.length; i++ )
         {
             if (document.getElementById('responsable_herramienta').options[i] == responsable)
             {
@@ -55,10 +82,8 @@ function openHerramientaModal(eventoStore, herramientaId = '', matricula = '', n
         }
     }
     else
-    document.getElementById('responsable_herramienta').selectedIndex = 0;
-    document.getElementById('tipo_herramienta').value = tipo;
-    document.getElementById('fecha_compra').value = fecha_compra;
-    document.getElementById('estado_herramienta').value = estado;
+        document.getElementById('responsable_herramienta').selectedIndex = 0;
+
     document.getElementById('observaciones_herramienta').value = observaciones;    
     
     eventForm(modal);

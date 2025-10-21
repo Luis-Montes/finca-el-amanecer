@@ -66,7 +66,8 @@
 
                 <div class="modal-footer border-top-0 justify-content-between p-3">
                     <button type="button" class="btn btn-light text-secondary rounded-3" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-success rounded-3 px-4">Guardar</button>
+                    <<button type="button" class="btn btn-success rounded-3 px-4" id="btnGuardarArbol">Guardar</button>
+
                 </div>
             </form>
         </div>

@@ -4,11 +4,11 @@
 
             <div class="modal-header" style="background-color: #2D995B; border-bottom: none; border-top-left-radius: 1rem; border-top-right-radius: 1rem;">
                 <h5 class="modal-title text-white fw-bold" id="modalAgregarHerramientaLabel" style="letter-spacing: 0.5px;">
-                    Agregar Nuevo Árbol
+                    Agregar Nueva herramienta
                 </h5>
             </div>
-{{-- action="{{ route('trees.store') }}" --}}
-            <form id="form-herramienta"  method="POST">
+{{--  --}}
+            <form id="form-herramienta" action="{{ route('tools.store') }}" method="POST">
                 @csrf
                 <div class="modal-body p-4">
                     <div class="row g-3">
